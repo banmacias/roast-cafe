@@ -1,0 +1,177 @@
+@import "tailwindcss";
+
+@theme {
+  /* Coffee color palette */
+  --color-roast-50: #fff9f0;
+  --color-roast-100: #fef0d3;
+  --color-roast-200: #fdd9a0;
+  --color-roast-300: #fbbf5c;
+  --color-roast-400: #f59e0b;
+  --color-roast-500: #d97706;
+  --color-roast-600: #b45309;
+  --color-roast-700: #92400e;
+  --color-roast-800: #6b2d0a;
+  --color-roast-900: #1c0a00;
+
+  --color-local-500: #10b981;
+  --color-local-600: #059669;
+  --color-local-100: #d1fae5;
+
+  --color-chain-400: #9ca3af;
+  --color-chain-200: #e5e7eb;
+
+  /* Fonts */
+  --font-display: "Nunito", sans-serif;
+  --font-sans: "Inter", sans-serif;
+
+  /* Spacing / radius */
+  --radius: 1rem;
+  --radius-sm: 0.5rem;
+  --radius-lg: 1.5rem;
+  --radius-full: 9999px;
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  html {
+    height: 100%;
+    font-family: var(--font-sans);
+    background-color: var(--color-roast-50);
+    color: var(--color-roast-900);
+  }
+
+  body {
+    min-height: 100%;
+    max-width: 480px;
+    margin: 0 auto;
+    background-color: var(--color-roast-50);
+    position: relative;
+  }
+
+  h1, h2, h3 {
+    font-family: var(--font-display);
+    font-weight: 800;
+  }
+}
+
+@layer utilities {
+  .card {
+    background: white;
+    border-radius: var(--radius);
+    padding: 1.25rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  }
+
+  .btn-primary {
+    background-color: var(--color-roast-500);
+    color: white;
+    font-family: var(--font-display);
+    font-weight: 700;
+    border-radius: var(--radius-full);
+    padding: 0.875rem 2rem;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.15s, transform 0.1s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+  }
+
+  .btn-primary:hover { background-color: var(--color-roast-600); }
+  .btn-primary:active { transform: scale(0.97); }
+
+  .btn-secondary {
+    background-color: transparent;
+    color: var(--color-roast-500);
+    font-family: var(--font-display);
+    font-weight: 700;
+    border-radius: var(--radius-full);
+    padding: 0.875rem 2rem;
+    font-size: 1rem;
+    border: 2px solid var(--color-roast-500);
+    cursor: pointer;
+    transition: all 0.15s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+  }
+
+  .btn-ghost {
+    background-color: transparent;
+    color: var(--color-chain-400);
+    font-family: var(--font-display);
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    font-size: 0.875rem;
+    text-decoration: underline;
+    padding: 0.5rem;
+  }
+
+  .xp-bar {
+    height: 12px;
+    background: var(--color-roast-100);
+    border-radius: var(--radius-full);
+    overflow: hidden;
+  }
+
+  .xp-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--color-roast-400), var(--color-roast-500));
+    border-radius: var(--radius-full);
+    transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Pulse animation for streak flame */
+  @keyframes flame-pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+  }
+
+  .flame-active {
+    animation: flame-pulse 2s ease-in-out infinite;
+  }
+
+  /* XP toast slide up */
+  @keyframes slide-up {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .animate-slide-up {
+    animation: slide-up 0.4s ease-out forwards;
+  }
+
+  /* Badge pop */
+  @keyframes badge-pop {
+    0% { opacity: 0; transform: scale(0.5); }
+    70% { transform: scale(1.1); }
+    100% { opacity: 1; transform: scale(1); }
+  }
+
+  .animate-badge-pop {
+    animation: badge-pop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  }
+
+  /* Shimmer loading */
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+
+  .shimmer {
+    background: linear-gradient(90deg, #f0e8d8 25%, #fef0d3 50%, #f0e8d8 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+    border-radius: 0.5rem;
+  }
+}
